@@ -9,3 +9,6 @@ students = db["students"]
 docs = students.find({})
 for doc in docs:
     print(doc)
+
+doc = students.find_one({"Student ID":1007})
+print(doc)
