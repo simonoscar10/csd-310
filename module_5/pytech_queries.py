@@ -12,4 +12,3 @@ for doc in docs:
 
 doc = students.find_one({"Student ID":1007})
 print(doc)
-##Test
