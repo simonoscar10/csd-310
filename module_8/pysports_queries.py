@@ -4,7 +4,7 @@ from mysql.connector import errorcode
 
 config = {
     "user": "pysports_user",
-    "password": "MySQL8IsGreat!",
+    "password": "password",
     "host": "127.0.0.1",
     "database": "pysports",
     "raise_on_warnings": True
@@ -12,7 +12,7 @@ config = {
 
 try:
 
-    db = mysql.connector.connect(**config) # connect to the pysports database 
+    db = mysql.connector.connect(**config)
 
     cursor = db.cursor()
 
@@ -43,7 +43,6 @@ try:
     input("\n\n  Press any key to continue... ")
 
 except mysql.connector.Error as err:
-    """ handle errors """
 
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("  The supplied username or password are invalid")
@@ -55,6 +54,5 @@ except mysql.connector.Error as err:
         print(err)
 
 finally:
-    """ close the connection to MySQL """
     
     db.close()
