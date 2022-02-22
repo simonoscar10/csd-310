@@ -10,5 +10,10 @@ docs = students.find({})
 for doc in docs:
     print(doc)
 
-doc = students.find_one({"Student ID":1007})
-print(doc)
+Adam = {"Student ID":1010, "First Name":"Adam", "Last Name":"Allover"}
+students.insert_one(Adam).inserted_id
+students.delete_one({"Student ID":1010})
+
+moreDocs = students.find({})
+for doc in moreDocs:
+    print(doc)

@@ -10,5 +10,5 @@ docs = students.find({})
 for doc in docs:
     print(doc)
 
-doc = students.find_one({"Student ID":1007})
-print(doc)
+students.update_one({"Student ID": 1007}, {"$set": {"Last Name":"Imagine"}})
+students.find_one({"Student ID": 1007})
