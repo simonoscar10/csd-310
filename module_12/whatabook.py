@@ -11,19 +11,23 @@ config = {
     "raise_on_warnings": True
 }
 
-def show_menu():
-    print("\n  -- Main Menu --")
+print(" Imagination is Key. Be uncommon amongst the uncommon.\n      --Menu--     \n ")
 
+print("    1. View Books\n    2. View Store Locations\n    3. My Account\n    4. Exit Program")
+
+while True:
+  try:
+    userIn = int(input(' Enter a number from 1-4 to choose a menu: '))
+    if userIn > 0 and userIn < 5:
+        break
+    print("\n  Invalid number please enter a number between 1 and 4\n")
     print("    1. View Books\n    2. View Store Locations\n    3. My Account\n    4. Exit Program")
+  except Exception as e:
+    print(e)
+userInput = userIn
+print(userInput)
 
-    try:
-        choice = int(input('      <Example enter: 1 for book listing>: '))
 
-        return choice
-    except ValueError:
-        print("\n  Invalid number, program terminated...\n")
-
-        sys.exit(0)
 
 def show_books(_cursor):
     _cursor.execute("SELECT book_id, book_name, author, details from book")
@@ -76,7 +80,6 @@ def show_account_menu():
         sys.exit(0)
 
 def show_wishlist(_cursor, _user_id):
-    """ query the database for a list of books added to the users wishlist """
 
     _cursor.execute("SELECT user.user_id, user.first_name, user.last_name, book.book_id, book.book_name, book.author " + 
                     "FROM wishlist " + 
@@ -92,7 +95,6 @@ def show_wishlist(_cursor, _user_id):
         print("        Book Name: {}\n        Author: {}\n".format(book[4], book[5]))
 
 def show_books_to_add(_cursor, _user_id):
-    """ query the database for a list of books not in the users wishlist """
 
     query = ("SELECT book_id, book_name, author, details "
             "FROM book "
@@ -113,15 +115,14 @@ def add_book_to_wishlist(_cursor, _user_id, _book_id):
     _cursor.execute("INSERT INTO wishlist(user_id, book_id) VALUES({}, {})".format(_user_id, _book_id))
 
 try:
-    """ try/catch block for handling potential MySQL database errors """ 
 
     db = mysql.connector.connect(**config)
 
     cursor = db.cursor() 
 
-    print("\n  Welcome to the WhatABook Application! ")
+    print("\n  What a book selection ")
 
-    user_selection = show_menu()
+    user_selection = userInput
 
     while user_selection != 4:
 
@@ -171,8 +172,8 @@ try:
         if user_selection < 0 or user_selection > 4:
             print("\n      Invalid option, please retry...")
             
-        
-        user_selection = show_menu()
+       
+        user_selection = userInput
 
     print("\n\n  Program terminated...")
 
@@ -192,3 +193,8 @@ finally:
     """ close the connection to MySQL """
 
     db.close()
+
+    
+        
+        
+
