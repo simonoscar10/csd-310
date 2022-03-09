@@ -163,7 +163,7 @@ try:
 
                  
                 if account_option < 0 or account_option > 3:
-                    print("\n      Invalid option, please retry...")
+                    print("\n      Invalid option, please Enter a number between 1-2")
 
                 
                 account_option = show_account_menu()
@@ -175,13 +175,13 @@ try:
        
         user_selection = userInput
 
-    print("\n\n  Program terminated...")
+    print("\n\n  End of program.   ")
 
 except mysql.connector.Error as err:
     """ handle errors """ 
 
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-        print("  The supplied username or password are invalid")
+        print("   Username or password is invalid")
 
     elif err.errno == errorcode.ER_BAD_DB_ERROR:
         print("  The specified database does not exist")
